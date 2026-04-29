@@ -1,0 +1,49 @@
+package excelRead;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelReadParent {
+	static FileInputStream f;
+	static XSSFWorkbook wb;
+	static XSSFSheet   sh;
+	
+	public static String getStringData(int a,int b) throws IOException 
+	{
+		f=new FileInputStream("C:\\Users\\manji\\Desktop\\JavaProject\\test.xlsx");
+		wb= new XSSFWorkbook(f);
+		sh=wb.getSheet("sheet1");// to get the details from the sheet in the workbook
+		XSSFRow r =sh.getRow(a); // to get the details from the row in a sheet. since we haven't initialized it earlier, doing it here.
+		XSSFCell c = r.getCell(b); // to get the details from a cell within a row.
+		return c.getStringCellValue();// to get the value of a string (string value)from a cell.
+	}
+	
+	public static String getIntegerData(int a,int b) throws IOException 
+	{
+		f=new FileInputStream("C:\\Users\\manji\\Desktop\\JavaProject\\test.xlsx");
+		wb= new XSSFWorkbook(f);
+		sh=wb.getSheet("sheet1");// to get the details from the sheet in the workbook
+		XSSFRow r =sh.getRow(a); // to get the details from the row in a sheet. since we haven't initialized it earlier, doing it here.
+		XSSFCell c = r.getCell(b); // to get the details from a cell within a row.
+		int az = (int)c.getNumericCellValue();
+		return String.valueOf(az);
+		//return c.getStringCellValue();// to get the value of a string (string value)from a cell.
+	}
+
+	public static String getFloatData(int a,int b) throws IOException 
+	{
+		f=new FileInputStream("C:\\Users\\manji\\Desktop\\JavaProject\\test.xlsx");
+		wb= new XSSFWorkbook(f);
+		sh=wb.getSheet("sheet1");// to get the details from the sheet in the workbook
+		XSSFRow r =sh.getRow(a); // to get the details from the row in a sheet. since we haven't initialized it earlier, doing it here.
+		XSSFCell c = r.getCell(b); // to get the details from a cell within a row.
+		float fl = (float)c.getNumericCellValue();
+		return String.valueOf(fl);
+		
+	}
+}
